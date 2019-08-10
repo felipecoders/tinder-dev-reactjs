@@ -21,3 +21,5 @@ export const Empty = styled.div`
   font-weight: bold;
   margin-top: 300px;
 `;
+
+export const MatchContainer = styled.div``;
