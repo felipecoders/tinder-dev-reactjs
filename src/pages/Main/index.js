@@ -34,8 +34,11 @@ export default function Main({ match }) {
     });
 
     socket.on("match", dev => {
+      debugger;
       setMatchDev(dev);
     });
+
+    return () => socket.close();
   }, [match.params.id]);
 
   async function handleDislike(id) {
@@ -76,7 +79,7 @@ export default function Main({ match }) {
         <ul>
           {users.slice(0, 6).map((user, index) => (
             <Card
-              key={user.id}
+              key={user._id}
               user={user}
               handleLike={handleLike}
               handleDislike={handleDislike}
@@ -86,7 +89,14 @@ export default function Main({ match }) {
       )}
 
       {matchDev && (
-        <MatchUser user={matchDev} onClose={() => setMatchDev(null)} />
+        <MatchUser
+          user={matchDev[0]}
+          onClose={() =>
+            matchDev.length > 1
+              ? setMatchDev(matchDev.filter((m, i) => i !== 0))
+              : setMatchDev(null)
+          }
+        />
       )}
     </Container>
   );

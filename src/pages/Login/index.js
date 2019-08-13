@@ -6,11 +6,12 @@ import { Container, Form } from "./styles";
 
 export default function Login({ history }) {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const { data } = await api.post("/devs", { username });
+      const { data } = await api.post("/devs", { username, password });
       localStorage.setItem("user", data._id);
       history.push(`/dev/${data._id}`);
     } catch (e) {
@@ -26,6 +27,12 @@ export default function Login({ history }) {
           onChange={e => setUsername(e.target.value)}
           value={username}
           placeholder="digite o seu usuario no Github"
+        />
+        <input
+          type="password"
+          onChange={e => setPassword(e.target.value)}
+          value={password}
+          placeholder="digite sua senha"
         />
         <button type="submit">Enviar</button>
       </Form>
