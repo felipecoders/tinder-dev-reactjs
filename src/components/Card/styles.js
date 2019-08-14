@@ -11,21 +11,21 @@ export const Container = styled.li`
 
   footer {
     flex: 1;
-    background: #fff;
-    border: 1px solid #eee;
+    background: ${props => props.theme.card.footer.background};
+    border: 1px solid ${props => props.theme.card.footer.borderColor};
     padding: 15px 20px;
     text-align: left;
     border-radius: 0 0 5px 5px;
 
     strong {
       font-size: 16px;
-      color: #333;
+      color: ${props => props.theme.card.footer.title};
     }
 
     p {
       font-size: 14px;
       line-height: 20px;
-      color: #999;
+      color: ${props => props.theme.card.footer.description};
       margin-top: 5px;
     }
   }
@@ -38,10 +38,10 @@ export const Container = styled.li`
 
     button {
       height: 50px;
-      box-shadow: 0 2px 2px 0 rgba(0 0 0 0.05);
+      box-shadow: ${props => props.theme.card.buttons.shadow};
       border: 0;
       border-radius: 4px;
-      background: #fff;
+      background: ${props => props.theme.card.buttons.background};
       cursor: pointer;
 
       &:hover img {
