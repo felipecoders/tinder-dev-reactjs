@@ -25,6 +25,10 @@ export const Form = styled.form`
     font-size: 16px;
     color: #666;
 
+    & + * {
+      margin-top: 10px;
+    }
+
     &::placeholder {
       color: #999;
     }
@@ -42,4 +46,21 @@ export const Form = styled.form`
     font-weight: bold;
     cursor: pointer;
   }
+
+  a {
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: right;
+    color: #df4723;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+`;
+
+export const ErrorMessage = styled.span`
+  font-size: 12px;
+  color: #dc143c;
+  padding: 5px;
+  text-align: center;
+  margin-top: 15px;
 `;

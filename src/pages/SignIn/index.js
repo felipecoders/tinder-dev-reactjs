@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../../services/api";
 
 import logo from "../../assets/logo.svg";
-import { Container, Form } from "./styles";
+import { Container, Form, ErrorMessage } from "./styles";
 
 export default function Login({ history }) {
+  const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,7 +17,8 @@ export default function Login({ history }) {
       localStorage.setItem("user", data._id);
       history.push(`/dev/${data._id}`);
     } catch (e) {
-      console.error(e);
+      setError("Usuario ou senha nao confere!");
+      setTimeout(() => setError(""), 3000);
     }
   }
 
@@ -23,6 +26,7 @@ export default function Login({ history }) {
     <Container>
       <Form onSubmit={handleSubmit}>
         <img src={logo} alt="Tindev" />
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <input
           onChange={e => setUsername(e.target.value)}
           value={username}
@@ -35,6 +39,7 @@ export default function Login({ history }) {
           placeholder="digite sua senha"
         />
         <button type="submit">Enviar</button>
+        <Link to="/signup">Nao possui cadastro?</Link>
       </Form>
     </Container>
   );

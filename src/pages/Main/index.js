@@ -34,7 +34,6 @@ export default function Main({ match }) {
     });
 
     socket.on("match", dev => {
-      debugger;
       setMatchDev(dev);
     });
 
